@@ -8,7 +8,7 @@ Standalone API headers for the **Click Beyond Frames** mod.
 
 ---
 
-## 📦 What's Inside?
+## What's Inside?
 
 This repository contains **only header files** that allow other mods to interact with Click Beyond Frames.
 
@@ -19,7 +19,7 @@ This repository contains **only header files** that allow other mods to interact
 
 ---
 
-## 🔧 Installation (for Developers)
+## Installation (for Developers)
 
 Add this as a dependency in your `mod.json`:
 
@@ -43,7 +43,7 @@ Then include the headers in your mod:
 
 ---
 
-## 💻 Usage Examples
+## Usage Examples
 
 1. Check if Click Beyond Frames is installed
 
@@ -87,7 +87,7 @@ auto signature = cbfbeyond::checker::getStateSignature(state);
 
 ---
 
-## 🛠️ Building
+## Building
 
 This is an API‑only mod. Build it to ensure the headers are registered with Geode:
 
@@ -97,24 +97,24 @@ geode build
 
 ---
 
-## 📝 Notes for Mod Developers
+## Notes for Mod Developers
 
 · Do not require this API unless your mod absolutely needs Click Beyond Frames. Use "required": false.
 · The API functions are guaranteed stable – they will not break across versions.
 
 ---
 
-## 📄 License
+## License
 
 MIT – Use freely.
 
 ---
 
-## ❤️ Credits
+## Credits
 
 - Geode SDK team
 - Geometry Dash community
 
 ---
 
-Check. Beyond. Frames. 🚀
+Check. Beyond. Frames.
