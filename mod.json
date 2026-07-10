@@ -1,11 +1,19 @@
 {
+    "geode": "v5.7.1",
+    "gd": {
+        "win": "2.2081",
+        "android": "2.2081",
+        "mac": "2.2081",
+        "ios": "2.2081"
+    },
     "id": "frostre1997.click-beyond-frames-api",
     "name": "Click Beyond Frames API",
     "version": "v1.0.0",
     "developer": "frostre1997",
     "description": "API headers for Click Beyond Frames – dev presence & anti-cheat checker.",
-    "geode": "v5.7.1",
-    "platforms": ["android", "win", "mac"],
+    "dependencies": {
+        "geode.node-ids": ">=v1.23.3"
+    },
     "api": {
         "include": ["include"]
     }
