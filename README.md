@@ -26,7 +26,7 @@ Add this as a dependency in your `mod.json`:
 ```json
 {
     "dependencies": {
-        "frostre1997.click-beyond-frames-api": {
+        "yourname.click-beyond-frames-api": {
             "version": ">=v1.0.0",
             "required": false
         }
