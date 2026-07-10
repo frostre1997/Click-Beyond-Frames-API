@@ -4,6 +4,7 @@
     "version": "v1.0.0",
     "developer": "frostre1997",
     "description": "API headers for Click Beyond Frames – dev presence & anti-cheat checker.",
+    "geode": "v5.7.1",
     "platforms": ["android", "win", "mac"],
     "api": {
         "include": ["include"]
