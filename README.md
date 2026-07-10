@@ -87,7 +87,7 @@ auto signature = cbfbeyond::checker::getStateSignature(state);
 
 ---
 
-🛠️ Building
+## 🛠️ Building
 
 This is an API‑only mod. Build it to ensure the headers are registered with Geode:
 
@@ -97,23 +97,23 @@ geode build
 
 ---
 
-📝 Notes for Mod Developers
+## 📝 Notes for Mod Developers
 
 · Do not require this API unless your mod absolutely needs Click Beyond Frames. Use "required": false.
 · The API functions are guaranteed stable – they will not break across versions.
 
 ---
 
-📄 License
+## 📄 License
 
 MIT – Use freely.
 
 ---
 
-❤️ Credits
+## ❤️ Credits
 
-· Geode SDK team
-· Geometry Dash community
+- Geode SDK team
+- Geometry Dash community
 
 ---
 
