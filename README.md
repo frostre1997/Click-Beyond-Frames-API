@@ -48,9 +48,9 @@ Then include the headers in your mod:
 1. Check if Click Beyond Frames is installed
 
 ```cpp
-if (cbfbeyond::dev::isInstalled()) {
+if (clickbeyondframes::dev::isInstalled()) {
     log::info("Click Beyond Frames is present!");
-    auto version = cbfbeyond::dev::getVersion();
+    auto version = clickbeyondframes::dev::getVersion();
     log::info("Version: {}", version);
 }
 ```
@@ -58,7 +58,7 @@ if (cbfbeyond::dev::isInstalled()) {
 2. Get runtime state (for anti-cheat / verification)
 
 ```cpp
-auto state = cbfbeyond::checker::getState();
+auto state = clickbeyondframes::checker::getState();
 
 if (state.isExceedingVanilla) {
     log::warn("Polling rate exceeds 480 TPS!");
@@ -72,7 +72,7 @@ if (!state.isInputThreadHealthy) {
 3. Verify integrity (flags debug builds)
 
 ```cpp
-if (!cbfbeyond::checker::verifyIntegrity()) {
+if (! clickbeyondframes::checker::verifyIntegrity()) {
     log::error("Mod is running in debug mode!");
 }
 ```
@@ -80,8 +80,8 @@ if (!cbfbeyond::checker::verifyIntegrity()) {
 4. Get a cryptographic signature
 
 ```cpp
-auto state = cbfbeyond::checker::getState();
-auto signature = cbfbeyond::checker::getStateSignature(state);
+auto state = clickbeyondframes::checker::getState();
+auto signature = clickbeyondframes::checker::getStateSignature(state);
 // Send signature to your server to validate
 ```
 
@@ -99,8 +99,8 @@ geode build
 
 ## Notes for Mod Developers
 
-· Do not require this API unless your mod absolutely needs Click Beyond Frames. Use "required": false.
-· The API functions are guaranteed stable – they will not break across versions.
+- Do not require this API unless your mod absolutely needs Click Beyond Frames. Use "required": false.
+- The API functions are guaranteed stable – they will not break across versions.
 
 ---
 
