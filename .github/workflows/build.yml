@@ -7,26 +7,103 @@ on:
       - "**"
 
 jobs:
-  build:
-    name: Build ${{ matrix.target }}
+  build-android:
+    name: Build ${{ matrix.platform }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        target: [Android32, Android64]
+        platform: [android64, android32]
+
+    env:
+      GEODE_SDK: ${{ github.workspace }}/geode-sdk
+      CPM_SOURCE_CACHE: ${{ github.workspace }}/cpm-cache
+      GEODE_VERSION: "5.8.1"
+      ANDROID_NDK: ${{ github.workspace }}/android-ndk-r28
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build the mod
-        id: build
-        uses: geode-sdk/build-geode-mod@main
-        with:
-          target: ${{ matrix.target }}
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build zip
 
-      - name: Upload artifact
+      - name: Install Geode CLI
+        uses: geode-sdk/cli/.github/actions/setup@main
+        with:
+          version: latest
+
+      - name: Setup dummy Geode profile
+        run: |
+          mkdir -p dummy_profile
+          geode profile add --name dummy dummy_profile/GeometryDash.exe win
+
+      - name: Install Geode SDK
+        run: |
+          geode sdk install "$GEODE_SDK"
+          geode sdk update ${{ env.GEODE_VERSION }}
+          geode sdk install-binaries --platform android64 --version ${{ env.GEODE_VERSION }}
+          geode sdk install-binaries --platform android32 --version ${{ env.GEODE_VERSION }}
+
+      - name: Download Android NDK r28
+        run: |
+          wget -q https://dl.google.com/android/repository/android-ndk-r28-linux.zip
+          unzip -q android-ndk-r28-linux.zip -d ${{ github.workspace }}
+          echo "ANDROID_NDK=${{ github.workspace }}/android-ndk-r28" >> $GITHUB_ENV
+
+      - name: Build mod
+        run: |
+          geode build \
+            -p ${{ matrix.platform }} \
+            --config Release \
+            --ndk "$ANDROID_NDK" \
+            -- \
+            -DGEODE_UNITY_BUILD=OFF
+
+      - name: Debug build outputs
+        run: |
+          find . -name '*.geode' | sort
+
+      - name: Upload artifact (${{ matrix.platform }})
         uses: actions/upload-artifact@v4
         with:
-          name: ClickBeyondFramesAPI-${{ matrix.target }}
-          path: ${{ steps.build.outputs.build-output }}
+          name: ClickBeyondFramesAPI-${{ matrix.platform }}
+          path: build-${{ matrix.platform }}/*.geode
+          if-no-files-found: error
+
+  combine:
+    name: Package Builds
+    runs-on: ubuntu-latest
+    needs: build-android
+    if: always()
+
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Inspect downloaded layout
+        run: |
+          pwd
+          ls -la
+          find . -maxdepth 4 -type f | sort
+
+      - name: Pack release zip
+        run: |
+          mkdir -p combined
+          files=$(find . -name '*.geode' -print)
+          if [ -z "$files" ]; then
+            echo "No .geode files found"
+            exit 1
+          fi
+          zip -j combined/frostre1997.click-beyond-frames-api.zip $files
+
+      - name: Upload Packed Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frostre1997.click-beyond-frames-api
+          path: combined/frostre1997.click-beyond-frames-api.zip
