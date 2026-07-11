@@ -1,8 +1,7 @@
 #pragma once
-#include <cstdint>
 #include <string>
 
-namespace cbfbeyond::dev {
+namespace clickbeyondframes::dev {
     bool isInstalled();
     std::string getVersion();
 }
