@@ -1,5 +1,5 @@
 {
-    "geode": "v5.8.1",
+    "geode": "5.8.1",
     "gd": {
         "win": "2.2081",
         "android": "2.2081",
@@ -7,7 +7,7 @@
         "ios": "2.2081"
     },
     "id": "frostre1997.click-beyond-frames-api",
-    "name": "Click Beyond Frames API",
+    "name": "Click-Beyond-Frames-API",
     "version": "v1.0.0",
     "developer": "frostre1997",
     "description": "API for Click Beyond Frames dev presence and checker utilities.",
