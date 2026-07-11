@@ -1,7 +1,7 @@
 #include <Geode/loader/Mod.hpp>
 #include <ClickBeyondFrames/API.hpp>
 
-namespace cbfbeyond::dev {
+namespace clickbeyondframes::dev {
     bool isInstalled() {
         return Mod::get() != nullptr;
     }
