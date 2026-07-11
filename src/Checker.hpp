@@ -4,7 +4,7 @@
 #include <functional>
 #include <sstream>
 
-namespace cbfbeyond::checker {
+namespace clickbeyondframes::checker {
     RuntimeState getState() {
         return {
             false,
