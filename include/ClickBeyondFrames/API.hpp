@@ -1,15 +1,8 @@
 #pragma once
-#include <Geode/Result.hpp>
+#include <cstdint>
 #include <string>
 
 namespace cbfbeyond::dev {
-
-    // Returns true if Click Beyond Frames is installed
-    inline bool isInstalled() {
-        return true;
-    }
-
-    // Returns the current mod version
+    bool isInstalled();
     std::string getVersion();
-
 }
