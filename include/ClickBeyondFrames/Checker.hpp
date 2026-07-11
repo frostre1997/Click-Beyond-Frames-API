@@ -2,7 +2,7 @@
 #include <cstdint>
 #include <string>
 
-namespace cbfbeyond::checker {
+namespace clickbeyondframes::checker {
     struct RuntimeState {
         bool isCBFEnabled;
         int pollingRateHz;
