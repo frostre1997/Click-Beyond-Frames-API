@@ -3,10 +3,13 @@ project(ClickBeyondFramesAPI)
 
 find_package(Geode REQUIRED)
 
-# API-only mod: no sources, just headers
 geode_add_mod(
     TARGET ClickBeyondFramesAPI
-    INCLUDES include
+    SOURCES
+        src/API.cpp
+        src/Checker.cpp
+    INCLUDES
+        include
 )
 
 geode_finalize_mod()
