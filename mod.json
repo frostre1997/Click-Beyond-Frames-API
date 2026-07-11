@@ -13,8 +13,5 @@
     "description": "API headers for Click Beyond Frames – dev presence & anti-cheat checker.",
     "dependencies": {
         "geode.node-ids": ">=v1.23.3"
-    },
-    "api": {
-        "include": ["include"]
     }
 }
